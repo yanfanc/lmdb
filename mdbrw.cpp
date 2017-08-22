@@ -188,9 +188,10 @@ bool  MDB::FreeMdbEnv()
 
         if(m_nType==2){
                   mdb_txn_commit(m_MdbEnv.txn);   
-        }
+        }else{
+		 mdb_txn_abort(m_MdbEnv.txn);
+	}
 
-        mdb_txn_abort(m_MdbEnv.txn);
         mdb_close(m_MdbEnv.env, m_MdbEnv.dbi);
         mdb_env_close(m_MdbEnv.env);
         m_MdbEnv.env = NULL;
